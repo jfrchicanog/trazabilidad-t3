@@ -103,7 +103,7 @@ public class LotesEJB implements GestionLotes {
 			throw new ProductoNoEncontradoException();
 		}
 		
-		productoEntity.setLotes(Collections.EMPTY_SET);
+		productoEntity.setLotes(Collections.emptySet());
 	}
 
     
