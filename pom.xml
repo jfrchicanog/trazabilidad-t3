@@ -16,5 +16,6 @@
 	<modules>
 		<module>trazabilidad-ejb</module>
 		<module>trazabilidad-jpa</module>
+		<module>trazabilidad-war</module>
 	</modules>
 </project>
