@@ -15,5 +15,6 @@
 	</properties>
 	<modules>
 		<module>trazabilidad-ejb</module>
+		<module>trazabilidad-jpa</module>
 	</modules>
 </project>
