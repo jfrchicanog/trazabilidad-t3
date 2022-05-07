@@ -23,11 +23,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
 public class TrazabilidadIT {
+	private static final String UNIDAD_PERSISTENCIA_PRUEBAS = "TrazabilidadIT";
 	private WebDriver driver;
 	private Map<String, Object> vars;
 	JavascriptExecutor js;
 
 	private static String baseURL;
+	private static Map<String,String> propiedadesExtra = new HashMap<>();
 
 	@BeforeClass
 	public static void setupClass() {
@@ -36,6 +38,8 @@ public class TrazabilidadIT {
 			Properties pomProperties = new Properties();
 			pomProperties.load(is);
 			server=pomProperties.getProperty("server.host");
+			String databaseURL = "jdbc:mysql://"+server+":3306/sii";
+			propiedadesExtra.put("javax.persistence.jdbc.url", databaseURL);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -47,11 +51,13 @@ public class TrazabilidadIT {
 		driver = new ChromeDriver();
 		js = (JavascriptExecutor) driver;
 		vars = new HashMap<String, Object>();
+		BaseDatos.inicializaBaseDatos(UNIDAD_PERSISTENCIA_PRUEBAS, propiedadesExtra);
 	}
 	@After
 	public void tearDown() {
 		driver.quit();
 	}
+	@SuppressWarnings("deprecation")
 	@Test
 	public void inicio() {
 		driver.get(baseURL);
